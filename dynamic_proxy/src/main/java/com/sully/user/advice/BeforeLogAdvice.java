@@ -1,4 +1,4 @@
-package com.sully.advice;
+package com.sully.user.advice;
 
 import org.springframework.aop.MethodBeforeAdvice;
 

@@ -1,7 +1,7 @@
-package com.sully.biz.impl;
+package com.sully.user.biz.impl;
 
-import com.sully.biz.IUserServ;
-import com.sully.entity.User;
+import com.sully.user.biz.IUserServ;
+import com.sully.user.entity.User;
 
 import java.util.List;
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- spring2.x后 -->
+    <!-- 目标对象 -->
+    <bean id="userServImpl" class="com.sully.log.biz.impl.UserServImpl"/>
+    <!-- 通知 -->
+    <bean id="logAdvice" class="com.sully.log.advice.LogAdvice"/>
+
+    <aop:config>
+        <aop:aspect id="logAspect" ref="logAdvice">
+            <!-- 切入点 -->
+            <aop:pointcut id="beforePointCut"
+                          expression="execution(* saveUser*(..))"/>
+            <aop:pointcut id="afterPointCut"
+                          expression="execution(* saveUser*(..))"/>
+
+            <!-- 织入(通知作用于切入点) -->
+            <aop:before method="beforeLog" pointcut-ref="beforePointCut"/>
+            <aop:after method="afterLog" pointcut-ref="afterPointCut"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

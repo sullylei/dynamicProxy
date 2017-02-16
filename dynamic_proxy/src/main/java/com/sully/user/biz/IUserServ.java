@@ -1,6 +1,6 @@
-package com.sully.biz;
+package com.sully.user.biz;
 
-import com.sully.entity.User;
+import com.sully.user.entity.User;
 
 import java.util.List;
 
