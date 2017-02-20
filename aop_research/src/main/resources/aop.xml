@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="timeHandler" class="com.sully.aop.TimeHanlder"/>
+    <bean id="helloWorldImpl1" class="com.sully.aop.HelloWorldImpl1"/>
+    <bean id="helloWorldImpl2" class="com.sully.aop.HelloWorldImpl2"/>
+    <bean id="logHandler" class="com.sully.aop.LogHandler"/>
+    <aop:config>
+        <aop:aspect id="time" ref="timeHandler">
+            <aop:pointcut id="servicePointCut" expression="execution(* com.sully.aop.HelloWorld.*(..))"/>
+            <aop:before method="printTime" pointcut-ref="servicePointCut"/>
+            <aop:after method="printTime" pointcut-ref="servicePointCut"/>
+        </aop:aspect>
+
+        <aop:aspect id="log" ref="logHandler">
+            <aop:pointcut id="printLog" expression="execution(* com.sully.aop.HelloWorld.*(..))"/>
+            <aop:before method="LogBefore" pointcut-ref="printLog"/>
+            <aop:after method="LogAfter" pointcut-ref="printLog"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
